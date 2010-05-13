@@ -7,6 +7,6 @@ bootstrap_manager.whenReady(["plugin.combine-css"], function() {
                 cache: false
             });
             cb(compiled_file_contents);
-        }
+        };
     });
 });
