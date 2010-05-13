@@ -6,7 +6,7 @@ This plugin is a small plugin which allows the usage of .sass files with the
 [visionmedia].
 
   [combine-css-plugin]: http://github.com/DracoBlue/spludo-plugins/tree/master/combine-css/
-  [visionmedia]: http://github.com/visionmedia/sass
+  [visionmedia]: http://github.com/visionmedia
   [sass.js]: http://github.com/visionmedia/sass.js
 
 Example:
