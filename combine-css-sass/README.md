@@ -2,10 +2,12 @@ Sass for Spludo's CombineCss
 =====================
 
 This plugin is a small plugin which allows the usage of .sass files with the
-[combine-css plugin] [combine-css-plugin].
+[combine-css plugin] [combine-css-plugin]. It uses the [sass.js] library by
+[visionmedia].
 
   [combine-css-plugin]: http://github.com/DracoBlue/spludo-plugins/tree/master/combine-css/
-
+  [visionmedia]: http://github.com/visionmedia/sass
+  [sass-js]: http://github.com/visionmedia/sass.js
 Example:
 -------------------
 
