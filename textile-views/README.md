@@ -33,7 +33,7 @@ Create a controller in `controllers/main-controllers.js`:
     new Controller('hello', {
         "execute": function(params, context) {
             return function(cb) {
-                context.view_name = 'MdTest';
+                context.view_name = 'TextileTest';
                 cb();
             }
         }
