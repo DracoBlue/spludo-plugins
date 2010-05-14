@@ -6,6 +6,9 @@
  * information, please see the LICENSE file in the root folder.
  */
 
+var fs = require("fs");
+var path = require('path');
+
 /**
  * @class A combine tool for css file available for the spludo framework.
  * 
@@ -27,9 +30,7 @@ CombineCss = function(options) {
 
 extend(true, CombineCss.prototype, Options.prototype, Logging.prototype);
 
-var fs = require("fs");
-var path = require('path');
-
+CombineCss.prototype.logging_prefix = 'CombineCss';
 
 CombineCss.prototype.getCombinedFile = function(combined_file_name, media_type) {
     this.log('getCombinedFile', combined_file_name, media_type);
@@ -115,6 +116,7 @@ CombineCss.prototype.getFromFileCache = function(source_file_name) {
         } else {
             var absolute_source_file_name = static_files_manager.getFileAbsolutePath(source_file_name);            
             fs.readFile(absolute_source_file_name, function(err, file_content) {
+                file_content = file_content.toString();
                 self.source_file_cache[source_file_name] = file_content;
                 cb(file_content);
             });
@@ -181,6 +183,7 @@ CombineCss.prototype.getCombinedFileContents = function(combined_file_name) {
                      */
                     if (needs_compiling) {
                         self.getFromFileCache(source_file_name)(function(contents) {
+                            self.log("gotFileFromCache", source_file_name, contents.length);
                             file_contents[source_file_name] = self.fixUrls(relative_combined_folder, source_file_name, contents);
                             chain_cb();
                         });
