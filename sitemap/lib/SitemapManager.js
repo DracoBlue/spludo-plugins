@@ -24,6 +24,8 @@ SitemapManager = function(options) {
 
 extend(true, SitemapManager.prototype, Options.prototype, Logging.prototype);
 
+SitemapManager.prototype.logging_prefix = 'SitemapManager';
+
 SitemapManager.prototype.getSitemap = function(sitemap_name) {
     var self = this;
     sitemap_name = sitemap_name || 'sitemap.xml';
