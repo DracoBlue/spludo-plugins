@@ -33,7 +33,7 @@ extend(true, CombineCss.prototype, Options.prototype, Logging.prototype);
 CombineCss.prototype.logging_prefix = 'CombineCss';
 
 CombineCss.prototype.getCombinedFile = function(combined_file_name, media_type) {
-    this.log('getCombinedFile', combined_file_name, media_type);
+    this.trace('getCombinedFile', arguments);
     var self = this;
 
     media_type = media_type || "screen";
@@ -68,13 +68,14 @@ CombineCss.prototype.getCombinedFile = function(combined_file_name, media_type) 
 };
 
 CombineCss.prototype.addCompiler = function(file_extension, compiler_function) {
+    this.trace('addCompiler', arguments);
     this.compilers[file_extension] = compiler_function;
 };
 
 CombineCss.prototype.addFile = function(source_file_name, combined_file_name, media_type) {
+    this.trace('addFile', arguments);
     var self = this;
     
-    this.log('addFile', combined_file_name, this.combined_files);
     var combined_file = this.getCombinedFile(combined_file_name, media_type);
     if (path.extname(source_file_name).substr(1) === 'css') {
         combined_file.raw_files.push(source_file_name);
@@ -104,10 +105,10 @@ CombineCss.prototype.addFile = function(source_file_name, combined_file_name, me
             }
         });
     }
-    this.log('push');
 };
 
 CombineCss.prototype.getFromFileCache = function(source_file_name) {
+    this.trace('getFromFileCache', arguments);
     var self = this;
     
     return function(cb) {
@@ -125,6 +126,7 @@ CombineCss.prototype.getFromFileCache = function(source_file_name) {
 };
 
 CombineCss.prototype.getCompiledFileContents = function(relative_combined_folder, source_file_name) {
+    this.trace('getCompiledFileContents', arguments);
     var self = this;
     
     return function(cb) {
@@ -143,6 +145,7 @@ CombineCss.prototype.getCompiledFileContents = function(relative_combined_folder
 };
 
 CombineCss.prototype.fixUrls =  function(relative_combined_folder, relative_file_name, file_contents) {
+    this.trace('fixUrls', arguments);
     var relative_file_folder = path.normalize(this.options.base_url + path.dirname(relative_file_name) + '/');
     if (relative_file_folder.indexOf(relative_combined_folder) !== 0) {
         throw new Error('The combined folder must be the base url.');
@@ -159,6 +162,7 @@ CombineCss.prototype.fixUrls =  function(relative_combined_folder, relative_file
 };
 
 CombineCss.prototype.getCombinedFileContents = function(combined_file_name) {
+    this.trace('getCombinedFileContents', arguments);
     var self = this;
     
     if (typeof this.combined_files[combined_file_name] === 'undefined') {
@@ -183,7 +187,6 @@ CombineCss.prototype.getCombinedFileContents = function(combined_file_name) {
                      */
                     if (needs_compiling) {
                         self.getFromFileCache(source_file_name)(function(contents) {
-                            self.log("gotFileFromCache", source_file_name, contents.length);
                             file_contents[source_file_name] = self.fixUrls(relative_combined_folder, source_file_name, contents);
                             chain_cb();
                         });
@@ -213,7 +216,7 @@ CombineCss.prototype.getCombinedFileContents = function(combined_file_name) {
 };
 
 CombineCss.prototype.getHeader = function(combined_file_name) {
-    this.log('getHeader', combined_file_name);
+    this.trace('getHeader', arguments);
     if (typeof this.combined_files[combined_file_name] === 'undefined') {
         throw new Error('Combined file ' + combined_file_name + ' not found!');
     }
