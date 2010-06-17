@@ -61,7 +61,7 @@ Create a controller in `controllers/main-controllers.js`:
     new Controller('hello', {
         "execute": function(params, context) {
             return function(cb) {
-                context.view_name = 'HamlTest';
+                context.view_name = 'MustacheTest';
                 
                 context.first_name = "alice";
                 context.age = 24;
