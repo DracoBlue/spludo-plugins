@@ -32,6 +32,9 @@ JsonFileUserManager.prototype.logging_prefix = 'JsonFileUserManager';
 
 JsonFileUserManager.prototype.checkLogin = function(username, password) {
     var self = this;
+
+    username = (username || "").toString();
+    password = (password || "").toString();
     
     this.trace('checkLogin', arguments);
     return function(cb) {
