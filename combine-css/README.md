@@ -53,7 +53,7 @@ But when you are in a development environment, you may not want to generate the
 minimized, compressed and merged css file. Instead you want the single files.
 
     config.setValues({
-        "combine-css": {
+        "combine_css": {
             combine: false
         }
     });
@@ -78,4 +78,3 @@ There are some features planned for this plugin.
 - export tool + cdn functionality, to disable any generation on production
   machine and use a cdn host to serve the generated files.
 - allow combined filenames, which are not in the root of the application.
-- create something like combine-js for javascript
