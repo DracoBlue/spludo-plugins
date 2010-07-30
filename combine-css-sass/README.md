@@ -53,7 +53,7 @@ But when you are in a development environment, you may not want to generate the
 minimized, compressed and merged css file. Instead you want the single files.
 
     config.setValues({
-        "combine-css": {
+        "combine_css": {
             combine: false
         }
     });
